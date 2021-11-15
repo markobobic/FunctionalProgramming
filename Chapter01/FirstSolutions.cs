@@ -51,5 +51,9 @@ namespace Chapter01
             using var disp = createDisposable();
             return func(disp);
         }
+
+        public static string ToSentanceCase( string source) =>
+           source[0].ToString().ToUpper() + source.ToLower().Substring(1);
+       
     }
 }

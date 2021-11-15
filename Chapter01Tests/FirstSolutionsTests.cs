@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static System.Linq.ParallelEnumerable;
+
 
 namespace Chapter01Tests
 {
@@ -29,6 +31,18 @@ namespace Chapter01Tests
             var expectedResults = new List<int>() { 1, 2, 3, 4, 5, 6 };
 
             Assert.IsTrue(numbers.QuickSort().SequenceEqual(expectedResults));
+        }
+
+        [TestMethod]
+        public void Quick_Sort_Test_3()
+        {
+            var list = new List<string>() { "bananas", "JAGODA", "Breskva" };
+
+            var toSentance =  list.AsParallel().Select(FirstSolutions.ToSentanceCase)
+                .Zip(Range(1, list.Count), (s, i) => $"{i}. {s}")
+                .ToList();
+
+
         }
     }
 }
