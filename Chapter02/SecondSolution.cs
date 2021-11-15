@@ -7,12 +7,12 @@ namespace Chapter02
     
     public enum BmiRange { Underweight, Healthy, Overweight }
 
-    internal static class Bmi
+    public static class Bmi
     {
         public static void Run()
             => Run(Read, Write);
 
-        internal static void Run(Func<string, double> read, Action<BmiRange> write)
+        public static void Run(Func<string, double> read, Action<BmiRange> write)
         {
             var weight = read("weight");
             var height = read("height");
@@ -20,10 +20,10 @@ namespace Chapter02
             write(bmiRange);
         }
 
-        internal static double CalculateBmi(double weight, double height)
+        public static double CalculateBmi(double weight, double height)
             => Round(weight / Pow(height, 2), 2);
 
-        internal static BmiRange ToBmiRange(this double bmi)
+        public static BmiRange ToBmiRange(this double bmi)
             => bmi < 18.5 ? BmiRange.Underweight : 25 <= bmi ? BmiRange.Overweight : BmiRange.Healthy;
 
         private static double Read(string field)
